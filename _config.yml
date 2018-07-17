@@ -1,13 +1,13 @@
 ﻿# Site settings
-title: Forgeeks
-SEOTitle: Forgeeks Blog
+title: FRANCiS
+SEOTitle: 这里是晶晶的博客 | FRANCiS Blog
 header-img: img/post-bg-desk.jpg
-email: forgeekscn@gmail.com
+email: francis1414926945@gmail.com
 description: "Focus On ."
-keyword: "Forgeeks Blog "
-url: "http://forgeekscn.github.io"          # your host, for absolute URL
+keyword: "FRANCiS Blog,晶晶的博客,游戏开发,python "
+url: "http://francis0927.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/forgeekscn/forgeekscn.github.io.git" # you code repository
+github_repo: "https://github.com/Francis0927/francis0927.github.io" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -18,11 +18,11 @@ sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's us
 
 # SNS settings
 RSS: false
-weibo_username:    forgeekscn
-zhihu_username:     forgeekscn
-github_username:    forgeekscn
-facebook_username:  forgeekscn
-jianshu_username:   forgeekscn
+weibo_username:    francis0927
+zhihu_username:     
+github_username:   francis0927 
+facebook_username:  
+jianshu_username:   
 #twitter_username:   forgeekscn
 
 
@@ -68,7 +68,7 @@ kramdown:
 
 # Google Analytics
 #ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
-ga_domain: forgeeks.cn              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+ga_domain: franciswu.top              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 
