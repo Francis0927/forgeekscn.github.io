@@ -114,3 +114,8 @@ define('DB_PASSWORD', 'password_here');
 define('DB_HOST', 'localhost');
 
 ```
+
+在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面就可以解决了
+```
+if(is_admin()) { add_filter('filesystem_method', create_function('$a','return "direct";' )); define('FS_CHMOD_DIR', 0751);}
+```
