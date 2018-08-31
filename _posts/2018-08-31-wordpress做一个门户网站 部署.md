@@ -13,17 +13,17 @@ tags:
 
 >最近很扯淡的要弄一个企业门户网站，在github上找了半天之后，找了个spring做的网站，跑起来文章数据显示异常，看了半天没有头绪，想起来干脆用wordprss装个主题用一下好了，将部署过程记在这里，留作参考。（任何问题欢迎邮件:[admin@fraciswu.top](admin@fraciswu.top)）
 
-# 又是一篇部署备忘 ~~划划水，以后可以直接写字数补丁了~~
+# 又是一篇部署备忘 ~~划划水 字数补丁~~
 
 ## 基本环境
 * 1 安装LAMP
 
-采用yum方式进行安装httpd、MariaDB、php、php-mysql，php-mysql用来进行php和MariaDB数据库的连接。
+    采用yum方式进行安装httpd、MariaDB、php、php-mysql，php-mysql用来进行php和MariaDB数据库的连接。
 
 ```
     yum install  httpd  mariadb-server  php php-mysql -y
 ```
-这样安装的是php的默认版本，需要装高版本的需要用`rpm`安装。
+    这样安装的是php的默认版本，需要装高版本的需要用`rpm`安装。
 * 2 安装MariaDB
     ```
     yum install mariadb mariadb-client mariadb mariadb-server
