@@ -115,7 +115,17 @@ define('DB_HOST', 'localhost');
 
 ```
 
-在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面就可以解决了
+## 问题解决
+在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面
 ```
-if(is_admin()) { add_filter('filesystem_method', create_function('$a','return "direct";' )); define('FS_CHMOD_DIR', 0751);}
+define('FS_METHOD','direct');
 ```
+这个时候会提示没有权限
+```
+chmod -R  777 /wordpress(wp安装目录)
+```
+还不行的话加上下面这个修改分组
+```
+chown -R www:www /wordpress(wp安装目录)
+```
+
