@@ -75,7 +75,7 @@ tags:
     #退出数据库
     exit
    ```
-   
+
 ## 安装wordpress
    ```
    wget http://wordpress.org/latest.tar.gz
@@ -129,3 +129,28 @@ chmod -R  777 /wordpress(wp安装目录)
 chown -R www:www /wordpress(wp安装目录)
 ```
 
+## 使用域名直接访问wordpress网站配置方法
+
+* dashboard设置网站根目录为xxxx.com/wordpress，网站目录为xxxx.com这个时候会报错先不管。
+
+* 登录服务器，在安装wordpress的目录下，执行命令：
+
+  ```shell
+  cp index.php ..
+  cd ..
+  vi index.php
+  ```
+
+  然后更改index.php的内容
+
+```php
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );1
+```
+
+​	改为
+
+```php
+require('./wordpress/wp-blog-header.php');
+```
+
+* 如果还有adaptive images报错需要把目录下的.hetcss文件也拷贝至上层目录（和上面步骤一样），设置权限777
