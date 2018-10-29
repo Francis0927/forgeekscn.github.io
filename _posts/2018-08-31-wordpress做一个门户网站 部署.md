@@ -28,11 +28,13 @@ tags:
     ```
     yum install mariadb mariadb-client mariadb mariadb-server
     ```
+
 * 3 安装扩展 数据库连接
     ```
     yum install php-mysql
     yum install php-pdo
     ```
+
 * 4 启动服务 设置开机启动
     ```
     systemctl start httpd.service # httpd服务
@@ -40,7 +42,7 @@ tags:
     systemctl start mariadb.service #mariadb服务
     systemctl enable mariadb.service #开机启动
     ```
-    
+
 * 5 测试环境
     在/var/www/html目录下新建一个test.php，在里面写下面的代码：
     ```
@@ -48,10 +50,12 @@ tags:
     ```
     在浏览器访问：`http://ip/test.php`
     出现php版本信息的页面，说明配置成功了。 
-    
+
 * 6 安装phpmyadmin
-    根据实际需求看，安装完成后需要修改phpMyAdmin的httpd设置，配置文件为/etc/httpd/conf.d/phpMyAdmin.conf
-    首先安装EPEL库：
+    根据实际需求看，安装完成后需要修改phpMyAdmin的httpd设置，配置文件为**/etc/httpd/conf.d/phpMyAdmin.conf**
+
+* 首先安装EPEL库：
+
     ```
     yum install -y epel-release
     ```
@@ -59,7 +63,7 @@ tags:
     ```
     yum install -y phpmyadmin
     ```
-    
+
 ## 创建数据库
    ```
    #登录数据库
@@ -116,7 +120,8 @@ define('DB_HOST', 'localhost');
 ```
 
 ## 问题解决
-在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面
+### 1、在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面
+
 ```
 define('FS_METHOD','direct');
 ```
@@ -128,6 +133,44 @@ chmod -R  777 /wordpress(wp安装目录)
 ```
 chown -R www:www /wordpress(wp安装目录)
 ```
+
+### 2、maria数据库崩溃后不会重启（根本原因没有找到，先设置自动重启）
+
+一般方法：
+
+```shell
+#首先确保此文件存在 /etc/systemd/system/multi-user.target.wants/mariadb.service
+vi /etc/systemd/system/multi-user.target.wants/mariadb.service
+
+#在[Service]下面加入以下行
+Restart=always
+
+#保存退出
+:wq
+
+#重新加载系统守护程序
+
+sudo systemctl daemon-reload
+sudo systemctl restart mariadb.service
+```
+
+如果不行再试试这个方法:
+
+```shell
+#让崩溃后的数据库服务器自动重启，需要配置/etc/inittab文件，首先备份一个，编辑此文件一定要非常小心
+sudo cp /etc/inittab /etc/inittab.orig
+vi /etc/inittab
+
+#结尾处增加一行，在/ etc / inittab文件中放置一个命令，以在mysqld_safe进程崩溃时重新生成mysqld_safe进程。 它有四个字段，每个字段与冒号（:)分隔开
+
+ms:2345:respawn:/bin/sh /usr/bin/mysqld_safe
+:wq
+
+#保存后重启服务
+systemctl restart mariadb.service 
+```
+
+
 
 ## 使用域名直接访问wordpress网站配置方法
 
