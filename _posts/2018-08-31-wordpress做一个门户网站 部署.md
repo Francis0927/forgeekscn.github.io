@@ -54,6 +54,25 @@ tags:
 * 6 安装phpmyadmin
     根据实际需求看，安装完成后需要修改phpMyAdmin的httpd设置，配置文件为**/etc/httpd/conf.d/phpMyAdmin.conf**
 
+    ```xml
+    <IfModule mod_authz_core.c>
+        # Apache 2.4
+        <RequireAny>
+            Require all granted
+        </RequireAny>
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        # Apache 2.2
+        #Order Deny,Allow
+        Deny from All
+        Allow from 127.0.0.1
+        Allow from ::1
+        Allow from all
+    </IfModule>
+    ```
+
+    这是修改后的，主要是是改为**Require all granted**
+
 * 首先安装EPEL库：
 
     ```
@@ -197,3 +216,7 @@ require('./wordpress/wp-blog-header.php');
 ```
 
 * 如果还有adaptive images报错需要把目录下的.hetcss文件也拷贝至上层目录（和上面步骤一样），设置权限777
+
+## 一台服务器配置多个wordpress站点
+
+https://blog.csdn.net/shineniefei/article/details/76691481
