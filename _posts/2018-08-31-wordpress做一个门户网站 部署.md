@@ -11,7 +11,7 @@ tags:
     - php
 ---
 
->最近很扯淡的要弄一个企业门户网站，在github上找了半天之后，找了个spring做的网站，跑起来文章数据显示异常，看了半天没有头绪，想起来干脆用wordprss装个主题用一下好了，将部署过程记在这里，留作参考。（任何问题欢迎邮件:[admin@fraciswu.top](admin@fraciswu.top)）
+>将部署过程记在这里，留作参考。（任何问题欢迎邮件:[admin@fraciswu.top](admin@fraciswu.top)）
 
 # 又是一篇部署备忘 ~~划划水 字数补丁~~
 
@@ -139,6 +139,19 @@ define('DB_HOST', 'localhost');
 ```
 
 ## 问题解决
+
+### 0、设置网站中文
+
+使用自动更新的方式需要先执行步骤1
+
+在wp-config.php文件中添加
+
+```
+define('WPLANG','zh_CN');
+```
+
+然后控制面板会有更新提示，更新版本即可
+
 ### 1、在线安装主题的时候会提示ftp登录，只需要将下面的代码加入WordPress根目录下的wp-config.php文件最后面
 
 ```
@@ -153,7 +166,7 @@ chmod -R  777 /wordpress(wp安装目录)
 chown -R www:www /wordpress(wp安装目录)
 ```
 
-### 2、maria数据库崩溃后不会重启（根本原因没有找到，先设置自动重启）
+### 2、数据库崩溃后不会重启（根本原因没有找到，先设置自动重启）
 
 一般方法：
 
@@ -216,6 +229,22 @@ require('./wordpress/wp-blog-header.php');
 ```
 
 * 如果还有adaptive images报错需要把目录下的.hetcss文件也拷贝至上层目录（和上面步骤一样），设置权限777
+
+### centos php 版本升级
+
+```shell
+   yum provides php   #自带的只有5.4版本
+   rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm         #更新源
+   rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+   yum remove php-common -y     #移除系统自带的php-common
+   yum install -y php56w php56w-opcache php56w-xml php56w-mcrypt php56w-gd php56w-devel    php56w-mysql php56w-intl php56w-mbstring         #安装依赖包
+   php -v                    #版本变为5.6
+   #因为我是准备搭建lnmp，所以安装php-fpm，这里会提示多个安装源，选择5.6版本的安装就可以了
+   yum provides php-fpm
+   yum install php56w-fpm-5.6.31-1.w7.x86_64 -y #根据实际版本情况来
+```
+
+
 
 ## 一台服务器配置多个wordpress站点
 
