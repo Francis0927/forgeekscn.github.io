@@ -11,7 +11,7 @@ tags:
     - php
 ---
 
->将部署过程记在这里，留作参考。（任何问题欢迎邮件:[admin@fraciswu.top](admin@fraciswu.top)）
+>将部署过程记在这里，留作参考。（任何问题欢迎邮件:[admin@franciswu.top](admin@franciswu.top)）
 
 # 又是一篇部署备忘 ~~划划水 字数补丁~~
 
