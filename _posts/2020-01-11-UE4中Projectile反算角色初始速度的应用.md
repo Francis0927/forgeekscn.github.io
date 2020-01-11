@@ -1,6 +1,6 @@
 ---
 layout:  post
-title:		UE4中Projectile反算角色位移
+title:		UE4中Projectile反算角色初始速度的应用
 subtitle:	角色的特殊位移方式（二）
 date:     2020-01-11
 author:   Francis-wu
